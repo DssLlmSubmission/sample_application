@@ -81,5 +81,5 @@ def predict_and_update(model_path):
     client.close()  # Close the client here after all operations are done
 
 # Example usage
-model_path = "Alprocco/Bert_Ukr_in_Swiss"
+model_path = "DssLlmSubmission/BERTopic_UKR_CH"
 predict_and_update(model_path)

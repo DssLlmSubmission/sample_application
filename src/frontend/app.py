@@ -8,6 +8,7 @@ import openai
 import tiktoken
 import os 
 import json
+
 # Config must be first line in script
 st.set_page_config(layout="wide")
 
@@ -59,14 +60,14 @@ def run_gpt(prompt: str, max_tokens_output: int, timeout: int = 10) -> str:
     str: The content of the response from the GPT model.
     """
     completion = openai.ChatCompletion.create(
-      model = 'gpt-3.5-turbo',
+      model = 'gpt-4',
       messages = [
         {'role': 'user', 'content': prompt}
       ],
       max_tokens = max_tokens_output,
       n = 1,
       stop = None,
-      temperature=0.5,
+      temperature=0,
       timeout=timeout
     )
     return completion['choices'][0]['message']['content']
@@ -291,7 +292,7 @@ if calculate_summary:
     start_prompt, cluster_str = start_prompt_creator(cluster=cluster)
     prompt = sample_df_gpt_analysis(df=df_mod, start_prompt=start_prompt, max_input_tokens=max_input_tokens-max_tokens_output)
     try:
-        # Generate the summary using GPT-3
+        # Generate the summary using GPT
         text = run_gpt(prompt, max_tokens_output, timeout=10)
     except openai.OpenAIError as e:
         # If the request times out, display an error message
