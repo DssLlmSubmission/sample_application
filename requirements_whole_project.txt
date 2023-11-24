@@ -147,3 +147,4 @@ xyzservices==2022.9.0
 yarl==1.8.2
 zipp==3.10.0
 huggingface_hub
+geopandas

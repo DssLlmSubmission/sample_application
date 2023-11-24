@@ -1,5 +1,5 @@
-leafmap
-plotly
+leafmap==0.13.2
+plotly==5.11.0
 geopandas
-openai
-tiktoken
+openai==0.28
+tiktoken==0.3.2
