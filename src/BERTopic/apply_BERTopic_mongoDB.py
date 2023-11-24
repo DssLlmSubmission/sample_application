@@ -6,6 +6,7 @@ from concurrent.futures import ThreadPoolExecutor
 from sentence_transformers import SentenceTransformer
 from bertopic import BERTopic
 from tqdm import tqdm
+import argparse
 
 def fetch_data():
     global col
@@ -18,7 +19,6 @@ def fetch_data():
     query = {"$and": [{"country": "Switzerland"}]}
     cursor = col.find(query)
     df = pd.DataFrame(list(cursor))
-    # df = df.iloc[:50000]
     return df, client  # Return the client as well
 
 def predict_topics(df, model_path):
@@ -80,6 +80,15 @@ def predict_and_update(model_path):
     
     client.close()  # Close the client here after all operations are done
 
-# Example usage
-model_path = "DssLlmSubmission/BERTopic_UKR_CH"
-predict_and_update(model_path)
+
+def main():
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description="Predict topics in text data.")
+    parser.add_argument('--model_path', type=str, required=True, help='Path to the BERTopic model local or on HuggingFace.')
+    args = parser.parse_args()
+    
+    predict_and_update(args.model_path)
+
+if __name__ == "__main__":
+    main()
+

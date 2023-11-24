@@ -42,10 +42,11 @@ The following code snippet will download the given Telegram data and place them 
    python src/BERTopic/train_BERTopic.py --input_data src/frontend/data/df_telegram.csv --data_type telegram --output_folder PATH_TO_YOUR_MODEL_FOLDER --k_cluster NUMBER_OF_CLUSTERS
    python src/BERTopic/upload_model_HF.py --path PATH_TO_YOUR_MODEL_FOLDER --HF_repo_ID YOUR_HF_REPO_ID
    python src/BERTopic/eval.py --path_or_repoID PATH_TO_YOUR_MODEL_FOLDER_OR_HF_REPO_ID
+   python src/BERTopic/apply_BERTopic_mongoDB.py --path_or_repoID PATH_TO_YOUR_MODEL_FOLDER_OR_HF_REPO_ID
    python src/database/MongoDBToCsv.py
    ``` 
 
-The training process initiates with the `MongoDBToCsv.py` script, which converts data from MongoDB into a CSV format. This CSV file is then fed into the `train_BERTopic.py` script to train the BERTopic model. During this training phase, you can specify the output folder for the model and the number of clusters to use. Once the model is trained, it is uploaded to a Hugging Face repository using the `upload_model_HF.py` script, where you need to provide the path to your model folder and your Hugging Face repository ID. The model's performance is evaluated using the `eval.py` script, which works with either a local model path or a Hugging Face repository ID. The process is ended by another execution of `MongoDBToCsv.py`, where we now also pull the predicted clusters, which we utilize in the next step for the frontend.
+The training process initiates with the `MongoDBToCsv.py` script, which converts data from MongoDB into a CSV format. This CSV file is then fed into the `train_BERTopic.py` script to train the BERTopic model. During this training phase, you can specify the output folder for the model and the number of clusters to use. Once the model is trained, it is uploaded to a Hugging Face repository using the `upload_model_HF.py` script, where you need to provide the path to your model folder and your Hugging Face repository ID. The model's performance is evaluated using the `eval.py` script, which works with either a local model path or a Hugging Face repository ID. Next to the Topic Coherence and Topic Diversity, the clusters should be qualitatively evaluated. When we are happy with the given model we push the predictions for each datapoint to MongoDB. The process is ended by another execution of `MongoDBToCsv.py`, where we now also pull the predicted clusters, which we utilize in the next step for the frontend.
 
 3. **Train Model**
    ```bash
