@@ -293,9 +293,10 @@ if calculate_summary:
     prompt = sample_df_gpt_analysis(df=df_mod, start_prompt=start_prompt, max_input_tokens=max_input_tokens-max_tokens_output)
     try:
         # Generate the summary using GPT
-        text = run_gpt(prompt, max_tokens_output, timeout=10)
+        text = run_gpt(prompt, max_tokens_output, timeout=100)
     except openai.OpenAIError as e:
         # If the request times out, display an error message
+        print(e)
         text = translator[st.session_state.language]["Sorry, request timed out. Please try again."]
     # Remove the loading message
     dummy_text_summary.empty()
