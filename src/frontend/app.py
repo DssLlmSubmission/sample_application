@@ -298,6 +298,7 @@ if calculate_summary:
         # If the request times out, display an error message
         print(e)
         text = translator[st.session_state.language]["Sorry, request timed out. Please try again."]
+        text = e
     # Remove the loading message
     dummy_text_summary.empty()
     # Display the generated summary
