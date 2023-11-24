@@ -68,7 +68,7 @@ def run_gpt(prompt: str, max_tokens_output: int, timeout: int = 10) -> str:
       n = 1,
       stop = None,
       temperature=0,
-      timeout=timeout
+    #   timeout=timeout
     )
     return completion['choices'][0]['message']['content']
 
