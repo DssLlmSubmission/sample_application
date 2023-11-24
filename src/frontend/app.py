@@ -137,7 +137,7 @@ def write_output(text: str, cluster: str) -> None:
 gdf = gpd.read_file("src/frontend/data/germany_switzerland.geojson")
 
 #functions to load data
-@st.cache()
+@st.cache_data()
 def load_telegram_data() -> pd.DataFrame:
     """
     Load Telegram data from a CSV file, with caching to improve performance.
