@@ -22,7 +22,7 @@ encoding = "cl100k_base"
 
 # Initialize session state for language selection
 if 'language' not in st.session_state:
-    st.session_state.language = "🇩🇪 Deutsch"
+    st.session_state.language = "🇬🇧 English"
 
 # Load translation data from a JSON file
 with open("src/frontend/data/translate_app.json", "r") as f:
